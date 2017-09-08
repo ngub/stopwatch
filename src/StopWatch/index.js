@@ -56,7 +56,17 @@ export class StopWatch {
      * @private
      */
     _render() {
-        this._parentElement.innerHTML = template({value: this._value});
+        this._parentElement.innerHTML = template({
+            value: this._calculateDegrees(this._value)
+        });
+    }
+
+    /**
+     * @private
+     * @param {number} seconds
+     */
+    _calculateDegrees(seconds) {
+        return seconds % 60 * 6
     }
 
     /**
@@ -91,6 +101,7 @@ export class StopWatch {
 
     /**
      * @private
+     * @param {Function} callback
      */
     _startTimer(callback) {
         if (!this._timer) {
